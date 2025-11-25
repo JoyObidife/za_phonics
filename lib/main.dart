@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Za_ Phonics',
+      title: 'Za Phonics',
       theme: ThemeData(
     colorScheme: ColorScheme.fromSeed(seedColor: Colors.amberAccent),
         primaryColor: Colors.amberAccent.shade400,
