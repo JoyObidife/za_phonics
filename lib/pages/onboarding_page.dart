@@ -10,32 +10,35 @@ class OnboardingPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
 
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          // flutter_animate functional usage
-          Image.asset("assets/images/mouse_nobg.png", width: 250, height: 250)
-              .animate()
-              .slideX(begin: -0.3, duration: Duration(seconds: 3))
-              .fadeIn(duration: Duration(seconds: 2)),
-              
-// flutter_animate widget based usage
-          Animate(
-            effects: [
-              SlideEffect(
-                duration: Duration(seconds: 3),
-                begin: Offset(0.5, 0.3),
+      body: SingleChildScrollView(
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              //flutter_animate functional usage
+              Image.asset("assets/images/mouse_nobg.png", width: 200, height: 200)
+                  .animate()
+                  .slideX(begin: -0.4, duration: Duration(seconds: 3))
+                  .fadeIn(duration: Duration(seconds: 2)),
+          
+              //flutter_animate widget based usage
+              Animate(
+                effects: [
+                  SlideEffect(
+                    duration: Duration(seconds: 3),
+                    begin: Offset(0.5, 0.3),
+                  ),
+                  FadeEffect(duration: Duration(milliseconds: 800))
+                ],
+                child: Image.asset(
+                  "assets/images/bee.png",
+                  width: 200,
+                  height: 200,
+                ),
               ),
-              FadeEffect(duration: Duration(milliseconds: 800))
             ],
-            child: Image.asset(
-              "assets/images/bee.png",
-              width: 250,
-              height: 250,
-            ),
           ),
-        ],
+        
       ),
       bottomNavigationBar: _buildOnboardingBottom(context),
     );
@@ -46,12 +49,17 @@ class OnboardingPage extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.end,
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text("Za_ Phonics", style: Theme.of(context).textTheme.headlineMedium),
+        Text(
+          "Za Phonics",
+          style: Theme.of(
+            context,
+          ).textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.bold, color: Colors.white),
+        ),
         Text(
           "The fun and interactive way to improve your kids reading and writing skills across all language",
           style: Theme.of(
             context,
-          ).textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
+          ).textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold, color: Colors.white),
           textAlign: TextAlign.center,
         ),
         Padding(

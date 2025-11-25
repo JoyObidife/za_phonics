@@ -16,19 +16,17 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
     colorScheme: ColorScheme.fromSeed(seedColor: Colors.amberAccent),
         primaryColor: Colors.amberAccent.shade400,
-        textTheme: TextTheme(
-          headlineMedium: TextStyle(color: Colors.white),
-          headlineSmall: TextStyle(color: Colors.white),
-          bodyLarge: TextStyle(color: Colors.white),
-        ),
-        elevatedButtonTheme: ElevatedButtonThemeData(
+        scaffoldBackgroundColor: Colors.grey.shade200,
+
+        
+         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
             shape: RoundedRectangleBorder(borderRadius: BorderRadiusGeometry.circular(8)),
-           fixedSize: Size.fromHeight(50),
-           textStyle: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 16
-           )
+            fixedSize: Size.fromHeight(50),
+            textStyle: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 16
+            )
           )
         )
       ),
