@@ -30,7 +30,11 @@ class _SignupPageState extends State<SignupPage> {
                   height: 250,
                 ),
                 if (currentPageIndex == 0) SignupSection(),
-                if (currentPageIndex == 1) TypeOfUserSelectionSection(),
+                if (currentPageIndex == 1) TypeOfUserSelectionSection(
+                  options: ["Guardian", "Tutor", "Teacher", "Others"],
+                 onSelect: (selectedItems) => print(selectedItems),
+                
+                ),
                 
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
