@@ -56,6 +56,7 @@ class AgreementWidget extends StatelessWidget {
               focusColor: Colors.white,
             ),
             Text("SELECT ALL"),
+            
           ],
         ),
 
