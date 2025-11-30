@@ -11,9 +11,10 @@ class SignupSection extends StatelessWidget {
       children: [
         Text(
           "Welcome to Za Phonics!",
-          style: Theme.of(
-            context,
-          ).textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.bold),
+          style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
           textAlign: TextAlign.center,
         ),
         Padding(
@@ -31,8 +32,6 @@ class SignupSection extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: AgreementWidget(),
         ),
-
-        
       ],
     );
   }
@@ -50,13 +49,9 @@ class AgreementWidget extends StatelessWidget {
             Checkbox(
               value: false,
               onChanged: (value) {},
-              //checkColor: Colors.white,
-              //activeColor: Colors.white,
-              //focusColor: Colors.white,
-             
+              side: BorderSide(color: Colors.white),
             ),
-            Text("SELECT ALL"),
-            
+            Text("SELECT ALL", style: TextStyle(color: Colors.white)),
           ],
         ),
 
@@ -77,6 +72,7 @@ class AgreementWidget extends StatelessWidget {
                   Expanded(
                     child: Text(
                       "I agree to the Privacy Policy and the Terms of Service",
+                      style: TextStyle(color: Colors.white),
                     ),
                   ),
                 ],
@@ -92,7 +88,7 @@ class AgreementWidget extends StatelessWidget {
                   ),
                   Expanded(
                     child: Text(
-                      "I want to receive email updates from Za Learning",
+                      "I want to receive email updates from Za Learning", style: TextStyle(color: Colors.white),
                     ),
                   ),
                 ],
