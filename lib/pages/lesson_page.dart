@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:za_phonics/widgets/group_item.dart';
 
 class LessonPage extends StatefulWidget {
   const LessonPage({super.key});
@@ -12,13 +13,18 @@ class _LessonPageState extends State<LessonPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 16),
-              child: _buildLessonsAppBar(),
-            ),
-          ],
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 16),
+                child: _buildLessonsAppBar(),
+              ),
+              GroupItem(),
+              GroupItem(),
+              GroupItem(),
+            ],
+          ),
         ),
       ),
     );
@@ -26,32 +32,33 @@ class _LessonPageState extends State<LessonPage> {
 
   SizedBox _buildLessonsAppBar() {
     return SizedBox(
-            child: Stack(
-              children: [
-                Positioned(
-                  right: 0,
-                  top: 8,
-                  left: 0,
-                  child: Text(
-                    "Lessons",
-                    style: Theme.of(context).textTheme.headlineMedium,
-                     textAlign: TextAlign.center,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 8.0),
-                  child: Align(
-                    alignment: Alignment.topRight,
-                    child: Card(
-                      child: IconButton(
-                        onPressed: () {},
-                        icon: Icon(Icons.settings,color: Colors.pink),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+      child: Stack(
+        children: [
+          Positioned(
+            right: 0,
+            top: 8,
+            left: 0,
+            child: Text(
+              "Lessons",
+              style: Theme.of(context).textTheme.headlineMedium,
+              textAlign: TextAlign.center,
             ),
-          );
+          ),
+          Padding(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: Align(
+              alignment: Alignment.topRight,
+              child: Card(
+                child: IconButton(
+                  onPressed: () {},
+                  icon: Icon(Icons.settings, color: Colors.pink),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
+

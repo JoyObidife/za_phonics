@@ -22,6 +22,7 @@ class _CustomBottomNavigationState extends State<CustomBottomNavigation> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
+        color: Colors.transparent,
         image: DecorationImage(
           image: AssetImage("assets/images/curve_rect.png"),
           fit: BoxFit.fitWidth,
@@ -34,8 +35,8 @@ class _CustomBottomNavigationState extends State<CustomBottomNavigation> {
         dividerHeight: 0,
         indicatorColor: Colors.transparent,
         tabs: [
-          _buildBottomNavItem(index: 0, activeColor: Colors.amber.shade900),
-          _buildBottomNavItem(index: 1, activeColor: Colors.green.shade900),
+          _buildBottomNavItem(index: 0, activeColor: Colors.amber.shade900, icon: Icons.book),
+          _buildBottomNavItem(index: 1, activeColor: Colors.green.shade900, icon: Icons.list_alt),
         ],
       ),
     );
@@ -44,11 +45,12 @@ class _CustomBottomNavigationState extends State<CustomBottomNavigation> {
   Widget _buildBottomNavItem({
     required int index,
     required Color activeColor,
+    required IconData icon,
   }) {
     return Container(
       height: 45,
       width: 45,
-      padding: EdgeInsets.all(4),
+      padding: EdgeInsets.all(8),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         color: widget.tabController.index == index
@@ -57,7 +59,7 @@ class _CustomBottomNavigationState extends State<CustomBottomNavigation> {
       ),
       child: Tab(
         icon: Icon(
-          Icons.book,
+          icon,
           size: 35,
           color: widget.tabController.index == index
               ? Colors.white
