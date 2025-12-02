@@ -1,10 +1,10 @@
 
 import 'package:flutter/material.dart';
+import 'package:za_phonics/models/phonics_character.dart';
 
 class PhonicsGroup {
   final String id;
-
-  final List<String> characters;
+  final List<PhonicsCharacter> characters;
   final String? practiceLink;
   final String bgImage;
   final Color color;
