@@ -40,7 +40,7 @@ final List<PhonicsCharacter> _phonicsCharacters = [
     character: "s",
     story: "A snake slithers making a soft /s/ sound.",
     actionText: "Weave your hand like a snake.",
-    actionImage: "assets/actions/snake.png",
+    actionImage: "assets/actions/snake.jpeg",
     soundingItems: [_dummySoundingItems[0], _dummySoundingItems[1], _dummySoundingItems[2]],
     correctSoundingItemIndex: 2,
     listOfWriting: [_dummyWritingItems[0], _dummyWritingItems[1]],

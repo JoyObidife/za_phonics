@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:za_phonics/pages/lesson_page.dart';
-import 'package:za_phonics/pages/profile_page.dart';
+import 'package:za_phonics/pages/pupils_page.dart';
+
 import 'package:za_phonics/widgets/custom_tab_controller.dart';
 
 class HomePage extends StatefulWidget {
@@ -25,7 +26,7 @@ class _HomePageState extends State<HomePage>
     return Scaffold(
       body: TabBarView(
         controller: tabController,
-        children: [LessonPage(), ProfilePage()],
+        children: [LessonPage(), PupilsPage()],
       ),
       bottomNavigationBar: CustomBottomNavigation(tabController: tabController),
     );
