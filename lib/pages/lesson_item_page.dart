@@ -48,15 +48,20 @@ class _LessonItemPageState extends State<LessonItemPage> {
           // Flash card
           _buildCardView(
             title: "Flash Card",
-            actions: IconButton(onPressed: () {}, icon: Icon(Icons.expand, color: Colors.grey.shade400,)),
-            child: Center(
-              child: GestureDetector(
-                onTap: () => Navigator.push(
+            actions: IconButton(
+              onPressed: () {
+                Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => FlashcardPage(phonicChar: phonicChar),
                   ),
-                ),
+                );
+              },
+              icon: Icon(Icons.expand, color: Colors.grey.shade400),
+            ),
+            child: Center(
+              child: GestureDetector(
+                onTap: () {},
                 child: Container(
                   decoration: BoxDecoration(
                     color: Colors.grey.shade300,
@@ -78,15 +83,52 @@ class _LessonItemPageState extends State<LessonItemPage> {
               ),
             ),
           ),
+          //
+          // Finger tracing
+          _buildCardView(
+            title: "Formation",
+            bottomItem: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue,
+                foregroundColor: Colors.white,
+                fixedSize: Size.fromWidth(MediaQuery.sizeOf(context).width),
+              ),
+              onPressed: () {},
+              child: Text("Finger tracing"),
+            ),
+            child: Center(
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade300,
+                  borderRadius: BorderRadius.circular(24),
+                ),
+
+                width: 150,
+                height: 150,
+
+                child: Center(
+                  child: Text(
+                    phonicChar,
+                    style: TextStyle(
+                      fontSize: 105,
+                      fontWeight: FontWeight.w900,
+                      color: Colors.redAccent,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
   }
 
-  Container _buildCardView({
+  Widget _buildCardView({
     required String title,
     required Widget child,
     Widget? actions,
+    Widget? bottomItem,
   }) {
     return Container(
       decoration: BoxDecoration(
@@ -112,6 +154,7 @@ class _LessonItemPageState extends State<LessonItemPage> {
             ),
           ),
           Container(child: child),
+          if (bottomItem != null) bottomItem,
         ],
       ),
     );
