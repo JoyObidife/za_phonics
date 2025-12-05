@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:za_phonics/models/phonics_character.dart';
+import 'package:za_phonics/models/writing_item.dart';
 import 'package:za_phonics/pages/flashcard_page.dart';
+import 'package:za_phonics/pages/formation_page.dart';
 
 class LessonItemPage extends StatefulWidget {
   const LessonItemPage({
@@ -93,7 +95,14 @@ class _LessonItemPageState extends State<LessonItemPage> {
                 foregroundColor: Colors.white,
                 fixedSize: Size.fromWidth(MediaQuery.sizeOf(context).width),
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => FormationPage(color: widget.color),
+                  ),
+                );
+              },
               child: Text("Finger tracing"),
             ),
             child: Center(
@@ -118,6 +127,42 @@ class _LessonItemPageState extends State<LessonItemPage> {
                 ),
               ),
             ),
+          ),
+          //
+          // Writing
+          _buildCardView(
+            title: "Writing",
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Call the sounds below, and ask the ask the children to write them down.",
+                ),
+                Wrap(
+                  alignment: WrapAlignment.start,
+                  children: List.generate(
+                    phonicsCharacter.listOfWriting.length,
+                    (index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: CircleAvatar(
+                          radius: 30,
+                          child: Text(
+                            phonicsCharacter.listOfWriting[index].character,
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
+          //
+          // Song
+          _buildCardView(
+            title: "Song",
+            child: Column(children: [Text(phonicsCharacter.songText)]),
           ),
         ],
       ),
