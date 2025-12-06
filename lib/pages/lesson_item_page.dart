@@ -33,10 +33,10 @@ class _LessonItemPageState extends State<LessonItemPage> {
         padding: EdgeInsets.all(16),
         children: [
           // Story section
-          _buildCardView(title: "Story", child: Text(phonicsCharacter.story)),
+          PhonicsItemPageCard(title: "Story", child: Text(phonicsCharacter.story)),
 
           // Action section
-          _buildCardView(
+          PhonicsItemPageCard(
             title: "Action",
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,7 +48,7 @@ class _LessonItemPageState extends State<LessonItemPage> {
           ),
           //
           // Flash card
-          _buildCardView(
+          PhonicsItemPageCard(
             title: "Flash Card",
             actions: IconButton(
               onPressed: () {
@@ -87,7 +87,7 @@ class _LessonItemPageState extends State<LessonItemPage> {
           ),
           //
           // Finger tracing
-          _buildCardView(
+          PhonicsItemPageCard(
             title: "Formation",
             bottomItem: ElevatedButton(
               style: ElevatedButton.styleFrom(
@@ -105,6 +105,7 @@ class _LessonItemPageState extends State<LessonItemPage> {
               },
               child: Text("Finger tracing"),
             ),
+
             child: Center(
               child: Container(
                 decoration: BoxDecoration(
@@ -129,8 +130,29 @@ class _LessonItemPageState extends State<LessonItemPage> {
             ),
           ),
           //
+          // Sounding
+          PhonicsItemPageCard(
+            title: "Sounding",
+            child: Column(
+              children: [
+                Text(
+                  "Which of these words does NOT contain the $phonicChar sound",
+                ),
+                Column(
+                  children: List.generate(
+                   phonicsCharacter.soundingItems.length,
+                   (index){
+                      var soundingItem = phonicsCharacter.soundingItems[index];
+                      return Container(child: Image.asset(soundingItem.image));
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
+          //
           // Writing
-          _buildCardView(
+         PhonicsItemPageCard(
             title: "Writing",
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -160,7 +182,7 @@ class _LessonItemPageState extends State<LessonItemPage> {
           ),
           //
           // Song
-          _buildCardView(
+          PhonicsItemPageCard(
             title: "Song",
             child: Column(children: [Text(phonicsCharacter.songText)]),
           ),
@@ -169,7 +191,7 @@ class _LessonItemPageState extends State<LessonItemPage> {
     );
   }
 
-  Widget _buildCardView({
+  Widget PhonicsItemPageCard({
     required String title,
     required Widget child,
     Widget? actions,

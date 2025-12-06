@@ -6,6 +6,9 @@ import 'package:za_phonics/models/sounding_item.dart';
 import 'package:za_phonics/models/writing_item.dart';
 
 final _dummySoundingItems = [
+  SoundingItem(image: "assets/images/snail.png", audio: "assets/audio/snail.mp3", name: "Snail"),
+  SoundingItem(image: "assets/images/drum.png", audio: "assets/audio/drum.mp3", name: "Drum"),
+  SoundingItem(image: "assets/images/spider.png", audio: "assets/audio/spider.mp3", name: "Spider"),
   SoundingItem(image: "assets/images/sounds/apple.png", audio: "assets/audio/sounds/apple.mp3", name: "Apple"),
   SoundingItem(image: "assets/images/sounds/ball.png", audio: "assets/audio/sounds/ball.mp3", name: "Ball"),
   SoundingItem(image: "assets/images/sounds/cat.png", audio: "assets/audio/sounds/cat.mp3", name: "Cat"),

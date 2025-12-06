@@ -22,7 +22,7 @@ class _SignupPageState extends State<SignupPage> {
         child: Column(
           children: [
             Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
+             // crossAxisAlignment: CrossAxisAlignment.stretch,
 
               children: [
                 Image.asset(
@@ -32,42 +32,48 @@ class _SignupPageState extends State<SignupPage> {
                 ),
                 if (currentPageIndex == 0) SignupSection(),
                 if (currentPageIndex == 1)
-                  TypeOfUserSelectionSection(
-                    key: Key("grid1"),
-                    heading: "Are you a guardian or a teacher",
-                    options: ["Guardian", "Tutor", "Teacher", "Other"],
-                    onSelect: (selectedItems) => print(selectedItems),
-                  ),
-                if (currentPageIndex == 2)
-                  TypeOfUserSelectionSection(
-                    key: Key("grid2"),
-                    heading: "Select your child's age group",
-                    options: ['0-3', '4-5', '6-8', '8 +'],
-                    onSelect: (selectedItems) => print(selectedItems),
-                  ),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    fixedSize: Size.fromWidth(
-                      MediaQuery.sizeOf(context).width * 0.7,
+                  Center(
+                    child: TypeOfUserSelectionSection(
+                      key: Key("grid1"),
+                      heading: "Are you a guardian or a teacher",
+                      options: ["Guardian", "Tutor", "Teacher", "Other"],
+                      onSelect: (selectedItems) => print(selectedItems),
                     ),
                   ),
-                  onPressed: () {
-                    if (currentPageIndex == 2) {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const HomePage(),
-                        ),
-                      );
-                    } else {
-                      // increment current page index
-                    setState(() {
-                      currentPageIndex++;
-                    });
-                    }
-                    
-                  },
-                  child: Text("Next"),
+                if (currentPageIndex == 2)
+                  Center(
+                    child: TypeOfUserSelectionSection(
+                      key: Key("grid2"),
+                      heading: "Select your child's age group",
+                      options: ['0-3', '4-5', '6-8', '8 +'],
+                      onSelect: (selectedItems) => print(selectedItems),
+                    ),
+                  ),
+                SizedBox(
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      fixedSize: Size.fromWidth(
+                        MediaQuery.sizeOf(context).width * 0.7,
+                      ),
+                    ),
+                    onPressed: () {
+                      if (currentPageIndex == 2) {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const HomePage(),
+                          ),
+                        );
+                      } else {
+                        // increment current page index
+                      setState(() {
+                        currentPageIndex++;
+                      });
+                      }
+                      
+                    },
+                    child: Text("Next"),
+                  ),
                 ),
               ],
             ),
