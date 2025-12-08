@@ -48,7 +48,7 @@ final List<PhonicsCharacter> _phonicsCharacters = [
     correctSoundingItemIndex: 2,
     listOfWriting: [_dummyWritingItems[0], _dummyWritingItems[1]],
     songText: "S, S, Snake!",
-    songAudio: "assets/audio/s_song.mp3",
+    songAudio: "assets/audio/snake_song_ss.mp3",
   ),
   PhonicsCharacter(
     character: "a",

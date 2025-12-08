@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:za_phonics/models/phonics_character.dart';
 import 'package:za_phonics/models/writing_item.dart';
 import 'package:za_phonics/pages/flashcard_page.dart';
 import 'package:za_phonics/pages/formation_page.dart';
+import 'package:za_phonics/widgets/phonics_item_card.dart';
+import 'package:za_phonics/widgets/sounding_section_widget.dart';
 
 class LessonItemPage extends StatefulWidget {
   const LessonItemPage({
@@ -33,7 +36,10 @@ class _LessonItemPageState extends State<LessonItemPage> {
         padding: EdgeInsets.all(16),
         children: [
           // Story section
-          PhonicsItemPageCard(title: "Story", child: Text(phonicsCharacter.story)),
+          PhonicsItemPageCard(
+            title: "Story",
+            child: Text(phonicsCharacter.story),
+          ),
 
           // Action section
           PhonicsItemPageCard(
@@ -131,28 +137,13 @@ class _LessonItemPageState extends State<LessonItemPage> {
           ),
           //
           // Sounding
-          PhonicsItemPageCard(
-            title: "Sounding",
-            child: Column(
-              children: [
-                Text(
-                  "Which of these words does NOT contain the $phonicChar sound",
-                ),
-                Column(
-                  children: List.generate(
-                   phonicsCharacter.soundingItems.length,
-                   (index){
-                      var soundingItem = phonicsCharacter.soundingItems[index];
-                      return Container(child: Image.asset(soundingItem.image));
-                    },
-                  ),
-                ),
-              ],
-            ),
+          SoundingSectionWidget(
+            phonicChar: phonicChar,
+            phonicsCharacter: phonicsCharacter,
           ),
           //
           // Writing
-         PhonicsItemPageCard(
+          PhonicsItemPageCard(
             title: "Writing",
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -184,44 +175,65 @@ class _LessonItemPageState extends State<LessonItemPage> {
           // Song
           PhonicsItemPageCard(
             title: "Song",
-            child: Column(children: [Text(phonicsCharacter.songText)]),
+            child: Column(
+              children: [
+                Text(phonicsCharacter.songText),
+                SongPlayerWidget(songAsset: widget.phonicsCharacter.songAudio),
+              ],
+            ),
           ),
         ],
       ),
     );
   }
+}
 
-  Widget PhonicsItemPageCard({
-    required String title,
-    required Widget child,
-    Widget? actions,
-    Widget? bottomItem,
-  }) {
+class SongPlayerWidget extends StatefulWidget {
+  const SongPlayerWidget({super.key, required this.songAsset});
+  final String songAsset;
+
+  @override
+  State<SongPlayerWidget> createState() => _SongPlayerWidgetState();
+}
+
+class _SongPlayerWidgetState extends State<SongPlayerWidget> {
+  var justAudio = AudioPlayer();
+  bool showText = false;
+  bool playing = false;
+
+  @override
+  void dispose() {
+    super.dispose();
+    justAudio.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      padding: EdgeInsets.all(12),
-      margin: EdgeInsets.symmetric(vertical: 8),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  title,
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
-                ),
-                if (actions != null) actions,
-              ],
-            ),
+          Slider(
+            value: 0.5,
+            onChanged: (position) {
+              print(position);
+            },
           ),
-          Container(child: child),
-          if (bottomItem != null) bottomItem,
+          IconButton(
+            onPressed: () {
+              justAudio.setAsset(widget.songAsset);
+              justAudio.play();
+              if(playing) {
+                playing = false;
+                justAudio.pause();
+              }else{
+                playing = true;
+              }
+              setState(() {
+                
+              });
+            },
+            icon: Icon(playing ? Icons.pause_circle :Icons.play_circle),
+          ),
         ],
       ),
     );
