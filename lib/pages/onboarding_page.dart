@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:za_phonics/pages/login_page.dart';
 import 'package:za_phonics/pages/signup_page.dart';
 
 class OnboardingPage extends StatelessWidget {
@@ -81,7 +82,10 @@ class OnboardingPage extends StatelessWidget {
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(foregroundColor: Colors.blue),
-                onPressed: () {},
+                onPressed: () {
+                   Navigator.push(context, MaterialPageRoute(builder: (context)=> LoginPage()));
+                
+                },
                 child: Text("Sign in"),
               ),
             ],
