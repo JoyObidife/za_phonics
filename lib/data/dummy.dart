@@ -38,7 +38,7 @@ final _dummyWritingItems = [
 ];
 
 // Dummy PhonicsCharacters
-final List<PhonicsCharacter> _phonicsCharacters = [
+final List<PhonicsCharacter> phonicsCharacters = [
   PhonicsCharacter(
     character: "s",
     story: "A snake slithers making a soft /s/ sound.",
@@ -60,6 +60,7 @@ final List<PhonicsCharacter> _phonicsCharacters = [
     listOfWriting: [_dummyWritingItems[0], _dummyWritingItems[1]],
     songText: "A, A, Apple!",
     songAudio: "assets/audio/a_song.mp3",
+    revision: ["s"]
   ),
   PhonicsCharacter(
     character: "t",
