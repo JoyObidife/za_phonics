@@ -13,33 +13,32 @@ class OnboardingPage extends StatelessWidget {
 
       body: SingleChildScrollView(
         child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              //flutter_animate functional usage
-              Image.asset("assets/images/mouse_nobg.png", width: 200, height: 200)
-                  .animate()
-                  .slideX(begin: -0.4, duration: Duration(seconds: 3))
-                  .fadeIn(duration: Duration(seconds: 2)),
-          
-              //flutter_animate widget based usage
-              Animate(
-                effects: [
-                  SlideEffect(
-                    duration: Duration(seconds: 3),
-                    begin: Offset(0.5, 0.3),
-                  ),
-                  FadeEffect(duration: Duration(milliseconds: 800))
-                ],
-                child: Image.asset(
-                  "assets/images/bee.png",
-                  width: 200,
-                  height: 200,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            //flutter_animate functional usage
+            Image.asset("assets/images/mouse_nobg.png", width: 200, height: 200)
+                .animate()
+                .slideX(begin: -0.4, duration: Duration(seconds: 3))
+                .fadeIn(duration: Duration(seconds: 2)),
+
+            //flutter_animate widget based usage
+            Animate(
+              effects: [
+                SlideEffect(
+                  duration: Duration(seconds: 3),
+                  begin: Offset(0.5, 0.3),
                 ),
+                FadeEffect(duration: Duration(milliseconds: 800)),
+              ],
+              child: Image.asset(
+                "assets/images/bee.png",
+                width: 200,
+                height: 200,
               ),
-            ],
-          ),
-        
+            ),
+          ],
+        ),
       ),
       bottomNavigationBar: _buildOnboardingBottom(context),
     );
@@ -52,15 +51,17 @@ class OnboardingPage extends StatelessWidget {
       children: [
         Text(
           "Za Phonics",
-          style: Theme.of(
-            context,
-          ).textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.bold, color: Colors.white),
+          style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
         ),
         Text(
           "The fun and interactive way to improve your kids reading and writing skills across all language",
-          style: Theme.of(
-            context,
-          ).textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold, color: Colors.white),
+          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
           textAlign: TextAlign.center,
         ),
         Padding(
@@ -75,7 +76,10 @@ class OnboardingPage extends StatelessWidget {
                     foregroundColor: Colors.white,
                   ),
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> SignupPage()));
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SignupPage()),
+                    );
                   },
                   child: Text("Sign up"),
                 ),
@@ -83,8 +87,10 @@ class OnboardingPage extends StatelessWidget {
               ElevatedButton(
                 style: ElevatedButton.styleFrom(foregroundColor: Colors.blue),
                 onPressed: () {
-                   Navigator.push(context, MaterialPageRoute(builder: (context)=> LoginPage()));
-                
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoginPage()),
+                  );
                 },
                 child: Text("Sign in"),
               ),
