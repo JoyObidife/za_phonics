@@ -3,7 +3,13 @@ import 'package:za_phonics/widgets/custom_textfield.dart';
 import 'package:za_phonics/widgets/password_textfield.dart';
 
 class SignupSection extends StatelessWidget {
-  const SignupSection({super.key});
+  const SignupSection({
+    super.key,
+    required this.emailController,
+    required this.passwordController,
+  });
+  final TextEditingController emailController;
+  final TextEditingController passwordController;
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +28,8 @@ class SignupSection extends StatelessWidget {
           child: Column(
             spacing: 16,
             children: [
-              CustomTextField(label: "Email"),
-              PasswordTextfield(),
+              CustomTextField(label: "Email", controller: emailController),
+              PasswordTextfield(controller: passwordController),
             ],
           ),
         ),
@@ -88,7 +94,8 @@ class AgreementWidget extends StatelessWidget {
                   ),
                   Expanded(
                     child: Text(
-                      "I want to receive email updates from Za Learning", style: TextStyle(color: Colors.white),
+                      "I want to receive email updates from Za Learning",
+                      style: TextStyle(color: Colors.white),
                     ),
                   ),
                 ],
