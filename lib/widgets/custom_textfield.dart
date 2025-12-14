@@ -21,6 +21,7 @@ class CustomTextField extends StatelessWidget {
       controller: controller,
       obscureText: obscureText,
       keyboardType: textInputType,
+      style: TextStyle(color: Colors.white), // Fixed: changed text color in Textfield
 
       decoration: InputDecoration(
         suffixIcon: suffixIcon,
