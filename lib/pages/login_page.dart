@@ -73,7 +73,7 @@ class _LoginPageState extends State<LoginPage> {
     try {
       await AuthRepository().signIn(
         email: emailController.text,
-        passsword: passwordController.text,
+        password: passwordController.text,
       );
 
       Navigator.pushReplacement(

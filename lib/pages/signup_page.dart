@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:za_phonics/models/app_users.dart';
 import 'package:za_phonics/pages/home_page.dart';
 import 'package:za_phonics/respository/auth_respository.dart';
 import 'package:za_phonics/widgets/custom_textfield.dart';
@@ -17,6 +18,11 @@ class _SignupPageState extends State<SignupPage> {
   var currentPageIndex = 0;
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
+  AppUsers? newUser;
+  AuthRepository authRepository = AuthRepository();
+   List<String> selectedAge = [];
+  List<String> selectedUserType = [];
+
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +51,10 @@ class _SignupPageState extends State<SignupPage> {
                         key: Key("grid1"),
                         heading: "Are you a guardian or a teacher",
                         options: ["Guardian", "Tutor", "Teacher", "Other"],
-                        onSelect: (selectedItems) => print(selectedItems),
+                         onSelect: (selectedItems) {
+                      selectedUserType = selectedItems;
+                    
+                        },
                       ),
                     ),
                   if (currentPageIndex == 2)
@@ -54,8 +63,10 @@ class _SignupPageState extends State<SignupPage> {
                         key: Key("grid2"),
                         heading: "Select your child's age group",
                         options: ['0-3', '4-5', '6-8', '8 +'],
-                        onSelect: (selectedItems) => print(selectedItems),
-                      ),
+                       onSelect: (listOfSelection) {
+                      selectedAge = listOfSelection;
+                    },
+                  ),
                     ),
                   SizedBox(
                     child: ElevatedButton(
@@ -95,9 +106,9 @@ class _SignupPageState extends State<SignupPage> {
 
   Future<void> _createUserAcount() async {
     try {
-      await AuthRepository().signUP(
+      newUser = await authRepository.signUp(
         email: emailController.text,
-        passsword: passwordController.text,
+        password: passwordController.text,
       );
       setState(() {
         currentPageIndex++;
