@@ -37,7 +37,7 @@ class AppUsers {
     String? email,
     String? profilePictureUrl,
     List<String>? userType,
-    List<String>? ageOfLearners,
+    List<String>? ageofLearners,
   }) {
     return AppUsers(
       uid: uid ?? this.uid,
@@ -45,7 +45,7 @@ class AppUsers {
       email: email ?? this.email,
       profilePictureUrl: profilePictureUrl ?? this.profilePictureUrl,
       userType: userType ?? this.userType,
-      ageofLearners: ageOfLearners ?? this.ageofLearners,
+      ageofLearners: ageofLearners ?? this.ageofLearners,
     );
   }
 }

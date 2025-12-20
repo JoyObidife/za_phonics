@@ -16,13 +16,12 @@ class SignupPage extends StatefulWidget {
 
 class _SignupPageState extends State<SignupPage> {
   var currentPageIndex = 0;
-  var emailController = TextEditingController();
+  var emailCOntroller = TextEditingController();
   var passwordController = TextEditingController();
   AppUsers? newUser;
   AuthRepository authRepository = AuthRepository();
-   List<String> selectedAge = [];
+  List<String> selectedAge = [];
   List<String> selectedUserType = [];
-
 
   @override
   Widget build(BuildContext context) {
@@ -32,70 +31,69 @@ class _SignupPageState extends State<SignupPage> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Column(
-                // crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Image.asset(
-                    "assets/images/mouse_nobg.png",
-                    width: 250,
-                    height: 250,
-                  ),
-                  if (currentPageIndex == 0)
-                    SignupSection(
-                      emailController: emailController,
-                      passwordController: passwordController,
-                    ),
-                  if (currentPageIndex == 1)
-                    Center(
-                      child: TypeOfUserSelectionSection(
-                        key: Key("grid1"),
-                        heading: "Are you a guardian or a teacher",
-                        options: ["Guardian", "Tutor", "Teacher", "Other"],
-                         onSelect: (selectedItems) {
+              Image.asset(
+                "assets/images/mouse_nobg.png",
+                width: 250,
+                height: 250,
+              ),
+              if (currentPageIndex == 0)
+                SignupSection(
+                  emailController: emailCOntroller,
+                  passwordController: passwordController,
+                ),
+              if (currentPageIndex == 1)
+                Center(
+                  child: TypeOfUserSelectionSection(
+                    key: Key("grid1"),
+                    heading: "Are you a guardian or a teacher",
+                    options: ["Guardian", "Tutor", "Teacher", "Other"],
+                    onSelect: (selectedItems) {
                       selectedUserType = selectedItems;
-                    
-                        },
-                      ),
-                    ),
-                  if (currentPageIndex == 2)
-                    Center(
-                      child: TypeOfUserSelectionSection(
-                        key: Key("grid2"),
-                        heading: "Select your child's age group",
-                        options: ['0-3', '4-5', '6-8', '8 +'],
-                       onSelect: (listOfSelection) {
+                    },
+                  ),
+                ),
+              if (currentPageIndex == 2)
+                Center(
+                  child: TypeOfUserSelectionSection(
+                    key: Key("grid2"),
+                    heading: "Select your child's age",
+                    options: ["0-3", "3-5", "5-8", "8+"],
+                    onSelect: (listOfSelection) {
                       selectedAge = listOfSelection;
                     },
                   ),
-                    ),
-                  SizedBox(
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        fixedSize: Size.fromWidth(
-                          MediaQuery.sizeOf(context).width * 0.7,
-                        ),
-                      ),
-                      onPressed: () {
-                        if (currentPageIndex == 2) {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const HomePage(),
-                            ),
-                          );
-                        } else if (currentPageIndex == 0) {
-                          _createUserAcount();
-                        } else {
-                          // increment current page index
-                          setState(() {
-                            currentPageIndex++;
-                          });
-                        }
-                      },
-                      child: Text("Next"),
+                ),
+              SizedBox(
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    fixedSize: Size.fromWidth(
+                      MediaQuery.sizeOf(context).width * 0.7,
                     ),
                   ),
-                ],
+                   onPressed: () {
+                    if (currentPageIndex == 2) {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return HomePage();
+                          },
+                        ),
+                      );
+                    } else if (currentPageIndex == 0) {
+                      _createUserAccount();
+                    } else {
+                      //increment current page index
+                      setState(() {
+                        currentPageIndex++;
+                      });
+                      authRepository.updateUserProfile(
+                        user: newUser!.copyWith(ageofLearners: selectedAge, userType: selectedUserType),
+                      );
+                    }
+                  },
+                  child: Text("Next"),
+                ),
               ),
             ],
           ),
@@ -104,12 +102,13 @@ class _SignupPageState extends State<SignupPage> {
     );
   }
 
-  Future<void> _createUserAcount() async {
+  Future<void> _createUserAccount() async {
     try {
       newUser = await authRepository.signUp(
-        email: emailController.text,
+        email: emailCOntroller.text,
         password: passwordController.text,
       );
+
       setState(() {
         currentPageIndex++;
       });
